@@ -2,7 +2,7 @@ import Header from'../components/header'
 import Footer from'../components/footer'
 import MyCard from'../components/myCard'
 const Home=(props)=>{
-  console.log(props);
+  // console.log(props);
   // for checking the recieved data
   return(
     <>
@@ -19,7 +19,7 @@ const Home=(props)=>{
       </section>
       <section className="container blog-list">
 {props.posts.articles.map((article)=>(
- <MyCard article={article} />
+ <MyCard key={article.createdAt} article={article} />
 ))}
          
          
