@@ -1,19 +1,19 @@
 import Link from "next/link";
 import moment from "moment";
-const MyCard = (props) => {
+const MyCard = ({article}) => {
   return (
     <>
       <div className="blog-item">
         <div className="img">
-          <img src={props.article.image} />
+          <img src={article.image} />
         </div>
-        <h4>{props.article.title}</h4>
-        <small>By {props.article.athor}</small>
+        <h4>{article.title}</h4>
+        <small>By {article.athor}</small>
         <div className="card-footer">
-          <Link href= {`article/${props.article.id}`}>
+          <Link href= {`article/${article.id}`}>
             <a>Read article</a>
           </Link>
-          <span>{moment(props.article.createdAt).format("ll")}</span>
+          <span>{moment(article.createdAt).format("ll")}</span>
         </div>
       </div>
     </>
