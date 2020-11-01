@@ -43,33 +43,35 @@ const Article = (props) => {
 };
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
-//SERVER SIDE RENDERING for each page, depends on the id at the link
-// export async function getServerSideProps(context) {
-//   // Fetch data from external API
-//   const res = await fetch(`https://mashriq.herokuapp.com/dash/v1/article/${context.params.id}`)
-//   const data = await res.json()
+// SERVER SIDE RENDERING for each page, depends on the id at the link
+export async function getServerSideProps(context) {
+  // Fetch data from external API
+  const res = await fetch(
+    `https://mashriq.herokuapp.com/dash/v1/article/${context.params.id}`
+  );
+  const data = await res.json();
 
-//   // Pass data to the page via props
-//   return { props: { post:data } }
-// }
+  // Pass data to the page via props
+  return { props: { post: data } };
+}
 
 // STATIC GENERATION + makes each article ready in the out folder after building
 // so its ready to read, no need to render
-export async function getStaticPaths() {
-  const res = await fetch("https://mashriq.herokuapp.com/dash/v1/articles");
-  const posts = await res.json();
-  const paths = posts.articles.map((post) => ({
-    params: { id: post.id.toString() },
-  }));
-  return { paths, fallback: false };
-}
+// export async function getStaticPaths() {
+//   const res = await fetch("https://mashriq.herokuapp.com/dash/v1/articles");
+//   const posts = await res.json();
+//   const paths = posts.articles.map((post) => ({
+//     params: { id: post.id.toString() },
+//   }));
+//   return { paths, fallback: false };
+// }
 
-export async function getStaticProps({ params }) {
-  const res = await fetch(
-    `https://mashriq.herokuapp.com/dash/v1/article/${params.id}`
-  );
-  const post = await res.json();
-  return { props: { post } };
-}
+// export async function getStaticProps({ params }) {
+//   const res = await fetch(
+//     `https://mashriq.herokuapp.com/dash/v1/article/${params.id}`
+//   );
+//   const post = await res.json();
+//   return { props: { post } };
+// }
 
 export default Article;
