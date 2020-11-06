@@ -18,8 +18,8 @@ const Home = (props) => {
           </div>
         </section>
         <section className="container blog-list">
-          {props.posts.articles.map((article) => (
-            <MyCard key={article.createdAt} article={article} />
+          {props.posts.articles.map((article, index) => (
+            <MyCard key={index} article={article} />
           ))}
         </section>
       </main>
